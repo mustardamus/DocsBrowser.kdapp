@@ -1,0 +1,38 @@
+{
+  "devMode": true,
+  "version": "0.1",
+  "name": "DocsBrowser",
+  "identifier": "com.koding.apps.docsbrowser",
+  "path": "~/Applications/DocsBrowser.kdapp",
+  "homepage": "mustardamus.koding.com/docsbrowser",
+  "author": "Sebastian Senf",
+  "repository": "git://github.com/mustardamus/docsbrowser.kdapp.git",
+  "description": "DocsBrowser : A documentation browser for the KDFramework.",
+  "category": "web-app",
+  "source": {
+    "blocks": {
+      "app": {
+        "files": [
+          "./main.coffee",
+          "./app/cmd.coffee",
+          "./app/setup.coffee",
+          "./app/templates.coffee",
+          "./app/navigation.coffee",
+          "./app/search.coffee",
+          "./app/content.coffee",
+          "./app/interface.coffee",
+          "./app/init.coffee"
+        ]
+      }
+    },
+    "stylesheets": [
+      "./resources/style.css"
+    ]
+  },
+  "options": {
+    "type": "tab"
+  },
+  "icns": {
+    "128": "./resources/icon.128.png"
+  }
+}
