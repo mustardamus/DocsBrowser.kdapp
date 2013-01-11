@@ -4,20 +4,24 @@ md   = require 'markdown'
 
 class KDParser
   constructor: ->
-    @rootDir = path.resolve(__dirname, '..')
-    @tmpDir  = "#{@rootDir}/tmp"
-    @wikiDir = "#{@tmpDir}/koding-wiki"
-    @docsDir = "#{@rootDir}/docs"
+    @rootDir   = path.resolve(__dirname, '..')
+    @tmpDir    = "#{@rootDir}/tmp"
+    @wikiDir   = "#{@tmpDir}/koding-wiki"
+    @docsDir   = "#{@rootDir}/docs"
+    @indexFile = "#{@docsDir}/index.json"
 
     unless fs.existsSync(@wikiDir)
       console.log "#{@wikiDir} does not exist."
       return
 
-    components = @recursiveDir
+    mdFiles = @recursiveDir
       path   : "#{@wikiDir}/framework"
       exclude: ['index.md', 'first_app']
     
-    @parseFiles components
+    htmlFiles = @parseFiles(mdFiles)
+    @generateIndex htmlFiles
+
+    console.log 'Done.'
 
   recursiveDir: (options) ->
     exclude   = options.exclude
@@ -49,12 +53,20 @@ class KDParser
     resultArr
 
   parseFiles: (folderArr) ->
+    retArr = []
+
     fs.mkdirSync(@docsDir) unless fs.existsSync(@docsDir)
 
     for folder in folderArr
-      destFolder = "#{@docsDir}/#{folder.folderName}"
+      srcFolder  = folder.folderName
+      destFolder = "#{@docsDir}/#{srcFolder}"
 
       fs.mkdirSync(destFolder) unless fs.existsSync(destFolder)
+
+      retArr.push
+        slug   : srcFolder
+        title  : srcFolder.charAt(0).toUpperCase() + srcFolder.substr(1, srcFolder.length)
+        entries: []
 
       for file in folder.files
         fileName = file.fileName
@@ -66,6 +78,17 @@ class KDParser
 
           fs.writeFile "#{destFolder}/#{fileName}.html", htmlContent, 'utf-8'
           console.log "Parsed #{fileName}"
+
+          retArr[retArr.length - 1].entries.push
+            slug : fileName
+            title: fileName
+
+    retArr
+
+  generateIndex: (filesIndex) ->
+    # todo: strip out logic of parseFiles
+    fs.writeFile @indexFile, JSON.stringify(filesIndex), 'utf-8'
+    console.log 'Generated index.json'
 
 
 new KDParser
