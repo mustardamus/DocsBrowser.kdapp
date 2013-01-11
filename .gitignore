@@ -2,3 +2,4 @@
 ftpsync.settings
 tmp/
 docs/
+node_modules/

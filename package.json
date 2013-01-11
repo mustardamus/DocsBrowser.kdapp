@@ -1,0 +1,7 @@
+{
+  "name": "DocsBrowser",
+  "version": "0.0.1",
+  "dependencies": {
+    "markdown": "*"
+  }
+}
