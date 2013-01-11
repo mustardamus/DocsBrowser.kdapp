@@ -11,3 +11,13 @@ class KDB.Templates
       Looks like the documentation has not been generated yet.
     </p>
   """
+
+  contentSetupLoad: """
+    loading... tbd
+  """
+
+  sidebarListItem: (options, category, entry) -> """
+    <a href='##{options.docsPath}/#{category.slug}/#{entry.slug}#{options.extension}'>
+      #{entry.title}
+    </a>
+  """

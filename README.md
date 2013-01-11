@@ -20,3 +20,4 @@
 ## Todo
 
 - fix inline links (browser side)
+- loading partial when docs are generated

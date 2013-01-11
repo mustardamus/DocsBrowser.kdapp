@@ -1,5 +1,6 @@
 class KDB.Content extends KD.classes.KDView
   constructor: ->
+    @cmd         = new KDB.Cmd
     @contentView = new KDView
       cssClass: 'content-view'
       partial : KDB.templates.contentDefault
@@ -18,7 +19,14 @@ class KDB.Content extends KD.classes.KDView
       new KD.classes.KDNotificationView
         title: 'Documentation generated successfully'
 
+    KDB.events.on 'content load', (url) => @loadContent(url)
+
     return @contentView
+
+  loadContent: (path) ->
+    @cmd.execute "cat #{path}", 
+      success: (res) =>
+        @contentView.updatePartial res
 
 ###
 
