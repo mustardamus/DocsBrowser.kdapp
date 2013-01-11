@@ -1,27 +1,40 @@
 fs   = require 'fs'
 path = require 'path'
 md   = require 'markdown'
+exec = require('child_process').exec
 
 class KDParser
   constructor: ->
     @rootDir   = path.resolve(__dirname, '..')
     @tmpDir    = "#{@rootDir}/tmp"
+    @wikiUrl   = 'https://github.com/farslan/koding-wiki.git'
     @wikiDir   = "#{@tmpDir}/koding-wiki"
     @docsDir   = "#{@rootDir}/docs"
     @indexFile = "#{@docsDir}/index.json"
 
-    unless fs.existsSync(@wikiDir)
-      console.log "#{@wikiDir} does not exist."
-      return
+    @cloneRepo ->
+      mdFiles = @recursiveDir
+        path   : "#{@wikiDir}/framework"
+        exclude: ['index.md', 'first_app']
+      
+      htmlFiles = @parseFiles(mdFiles)
+      @generateIndex htmlFiles
 
-    mdFiles = @recursiveDir
-      path   : "#{@wikiDir}/framework"
-      exclude: ['index.md', 'first_app']
-    
-    htmlFiles = @parseFiles(mdFiles)
-    @generateIndex htmlFiles
+      console.log 'Done.'
 
-    console.log 'Done.'
+  cloneRepo: (callback) ->
+    cmd = ''
+
+    fs.mkdirSync(@tmpDir) unless fs.existsSync(@tmpDir)
+
+    if fs.existsSync(@wikiDir)
+      cmd = "cd #{@wikiDir} && git pull"
+      console.log "Updating repo..."
+    else
+      cmd = "cd #{@tmpDir} && git clone #{@wikiUrl}"
+      console.log "Cloning repo..."
+
+    exec cmd, (err, stdout, stderr) => callback.call @
 
   recursiveDir: (options) ->
     exclude   = options.exclude
