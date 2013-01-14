@@ -11,3 +11,9 @@ dbInterface   = new KDB.Interface
   contentView    : dbContent
   
 dbSetup       = new KDB.Setup
+
+# small hack to make the style.css work
+cmd = new KDB.Cmd
+cmd.execute 'cat ~/Applications/DocsBrowser.kdapp/resources/style.css',
+  success: (style) ->
+    $('head').append "<style>#{style}</style>"

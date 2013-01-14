@@ -2,7 +2,7 @@ class KDB.Search extends KD.classes.KDView
   constructor: (ctrl) ->
     @listCtrl    = ctrl.sidebarListCtrl
     @searchInput = new KD.classes.KDInputView
-      cssClass: 'search-view'
+      cssClass   : 'kdb-search-view'
       placeholder: 'Search'
 
     @searchInput.listenTo

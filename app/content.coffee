@@ -2,7 +2,7 @@ class KDB.Content extends KD.classes.KDView
   constructor: ->
     @cmd         = new KDB.Cmd
     @contentView = new KDView
-      cssClass: 'content-view'
+      cssClass: 'kdb-content-view'
       partial : KDB.templates.contentDefault
 
     @contentView.domElement.css 'overflow', 'auto'
