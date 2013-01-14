@@ -6,7 +6,7 @@
   "path": "~/Applications/DocsBrowser.kdapp",
   "homepage": "mustardamus.koding.com/docsbrowser",
   "author": "Sebastian Senf",
-  "repository": "git://github.com/mustardamus/docsbrowser.kdapp.git",
+  "repository": "git://github.com/mustardamus/DocsBrowser.kdapp.git",
   "description": "DocsBrowser : A documentation browser for the KDFramework.",
   "category": "web-app",
   "source": {
