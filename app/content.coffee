@@ -14,6 +14,9 @@ class KDB.Content extends KD.classes.KDView
       @contentView.updatePartial KDB.templates.contentSetup
       @contentView.addSubView runSetupBtn
 
+    KDB.events.on 'setup load', =>
+      @contentView.updatePartial KDB.templates.contentSetupLoad
+
     KDB.events.on 'setup done', =>
       @contentView.updatePartial KDB.templates.contentDefault
       new KD.classes.KDNotificationView

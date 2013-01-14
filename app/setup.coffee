@@ -10,6 +10,8 @@ class KDB.Setup
     KDB.events.on 'setup run', => @runParser()
 
   runParser: ->
+    KDB.events.emit 'setup load'
+
     @cmd.execute "coffee #{@parserLib}",
       success: (res) => KDB.events.emit 'setup done'
       error: -> console.log 'ow, no parser found'

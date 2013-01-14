@@ -13,7 +13,9 @@ class KDB.Templates
   """
 
   contentSetupLoad: """
-    loading... tbd
+    <p>
+      loading...
+    </p>
   """
 
   sidebarListItem: (options, category, entry) -> """

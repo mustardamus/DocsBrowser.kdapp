@@ -31,6 +31,7 @@ class KDB.SidebarList extends KD.classes.KDView
       viewOptions: { itemClass: KDB.SidebarListItem }
 
     @initializeEntries()
+    KDB.events.on 'setup done', => @initializeEntries()
 
     return @listCtrl.getView() # view initialized in init.coffee
 
