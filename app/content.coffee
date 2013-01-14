@@ -5,6 +5,8 @@ class KDB.Content extends KD.classes.KDView
       cssClass: 'content-view'
       partial : KDB.templates.contentDefault
 
+    @contentView.domElement.css 'overflow', 'auto'
+
     KDB.events.on 'setup show', =>
       runSetupBtn = new KD.classes.KDButtonView
         cssClass: 'clean-gray run-setup-btn'
