@@ -33,7 +33,10 @@ class KDB.SidebarList extends KD.classes.KDView
     @initializeEntries()
     KDB.events.on 'setup done', => @initializeEntries()
 
-    return @listCtrl.getView() # view initialized in init.coffee
+    return {
+      ctrl: @listCtrl
+      view: @listCtrl.getView()
+    }
 
   initializeEntries: ->
     # todo: how can I fetch a file via ajax inside a kdapp?!
