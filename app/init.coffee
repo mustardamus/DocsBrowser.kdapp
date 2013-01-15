@@ -16,4 +16,5 @@ dbSetup       = new KDB.Setup
 cmd = new KDB.Cmd
 cmd.execute 'cat ~/Applications/DocsBrowser.kdapp/resources/style.css',
   success: (style) ->
-    $('head').append "<style>#{style}</style>"
+    $('#hackstyle').remove() #remove old styles from page
+    $('head').append "<style id='hackstyle'>#{style}</style>"

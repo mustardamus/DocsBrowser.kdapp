@@ -28,7 +28,9 @@ class KDB.SidebarList extends KD.classes.KDView
     @options  = $.extend(@defaults, options)
     @cmd      = new KDB.Cmd
     @listCtrl = new KD.classes.KDListViewController   # creates a view as well if not defined
-      viewOptions: { itemClass: KDB.SidebarListItem }
+      viewOptions:
+        cssClass : 'kdb-sidebar-navigation'
+        itemClass: KDB.SidebarListItem
 
     @initializeEntries()
     KDB.events.on 'setup done', => @initializeEntries()

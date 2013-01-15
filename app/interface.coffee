@@ -4,7 +4,7 @@ class KDB.Interface extends KDView
   constructor: (views) ->
     @views         = {}
     
-    @views.sidebar = new KDView { cssClass: 'sidebar-view' }
+    @views.sidebar = new KDView { cssClass: 'kdb-sidebar-view' }
     @views.search  = views.searchInputView
     @views.list    = views.sidebarListView
 
@@ -15,7 +15,7 @@ class KDB.Interface extends KDView
 
     mainView = new KD.classes.KDSplitView
       type     : 'vertical'
-      resizeble: true
+      resizeble: false
       sizes    : ['20%', '80%']
       views    : [@views.sidebar, @views.content]
 

@@ -19,3 +19,29 @@
 .kdb-setup-btn {
   margin: 40px;
 }
+
+.kdb-sidebar-view input {
+  margin: 5px 0;
+  width: 100%;
+}
+
+.kdb-sidebar-view > .listview-wrapper {
+  border-top: 1px solid #aaa;
+}
+
+.kdb-sidebar-view .kdlistitemview a {
+  display: block;
+  padding: 4px 0 4px 4px;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  background: white;
+}
+
+.kdb-sidebar-view .kdlistitemview a:hover {
+  background: #e4e4e4;
+}
+
+.kdb-sidebar-view .selected a, .kdb-sidebar-view .selected a:hover {
+  background: #f6a22e;
+  color: #222;
+}
