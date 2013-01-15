@@ -1,3 +1,17 @@
-.kdb-content-view {
-  padding: 20px;
+.kdb-content-view h1, .kdb-content-view p, .kdb-content-view ul {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.kdb-content-view h1, .kdb-content-view h2 {
+  margin: 18px 0 32px 0;
+}
+
+.kdb-content-view ul {
+  list-style: circle;
+  margin-left: 20px;
+}
+
+.kdb-content-view p {
+  margin-bottom: 18px;
 }

@@ -12,6 +12,10 @@ class KDB.Setup
   runParser: ->
     KDB.events.emit 'setup load'
 
-    @cmd.execute "coffee #{@parserLib}",
-      success: (res) => KDB.events.emit 'setup done'
-      error: -> console.log 'ow, no parser found'
+    @cmd.execute "cd #{@rootDir} && npm install",
+      success: =>
+        @cmd.execute "coffee #{@parserLib}",
+          success: (res) => KDB.events.emit 'setup done'
+          error: -> console.log 'ow, no parser found'
+      error: ->
+        console.log 'foo, npm install failed'

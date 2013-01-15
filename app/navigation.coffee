@@ -2,7 +2,7 @@ class KDB.SidebarListItem extends KD.classes.KDListItemView
   constructor: (options, data) ->
     super
 
-    options.cssClass = "entry"
+    options.cssClass = "kdb-sidebar-entry"
     @options         = data.options
     @category        = data.category
     @entry           = data.entry
@@ -39,15 +39,6 @@ class KDB.SidebarList extends KD.classes.KDView
     }
 
   initializeEntries: ->
-    # todo: how can I fetch a file via ajax inside a kdapp?!
-    ###
-    $.ajax
-      url    : "#{@options.docsPath}/#{@options.indexFile}"
-      success: (res) ->
-        console.log 'ajaxed index', res
-    ###
-
-    # <3 hacking
     @cmd.execute "cat #{@options.rootPath}/#{@options.docsPath}/#{@options.indexFile}",
       success: (res) => @parseEntries(JSON.parse(res))
       error: -> console.log 'oh noes, no index file found'
